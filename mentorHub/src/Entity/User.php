@@ -36,19 +36,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="string", length=255)
      */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $deleledAt;
+    private $fullname;
 
     public function getId(): ?int
     {
@@ -139,38 +129,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getFullname(): ?string
     {
-        return $this->createdAt;
+        return $this->fullname;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setFullname(string $fullname): self
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getDeleledAt(): ?\DateTimeImmutable
-    {
-        return $this->deleledAt;
-    }
-
-    public function setDeleledAt(\DateTimeImmutable $deleledAt): self
-    {
-        $this->deleledAt = $deleledAt;
+        $this->fullname = $fullname;
 
         return $this;
     }
