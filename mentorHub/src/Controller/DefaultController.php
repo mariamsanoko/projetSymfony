@@ -11,10 +11,10 @@ class DefaultController extends AbstractController
 
     #[Route('/')]
     # Ex. http://127.0.0.1:8000/
-    public function home()
+    public function home():Response
     {
-        return new Response('<h1>Bienvenue sur ma page d\'accueil.</h1>');
-        #return $this->render('default/home.html.twig');
+        #return new Response(content:'<h1>Bienvenue sur ma page d\'accueil.</h1>');
+        return $this->render(view:'default/home.html.twig');
     }
     /**
     #[Route(data:'/category/{slug}')]
