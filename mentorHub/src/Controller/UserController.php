@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    #[Route('inscription')]
+    #[Route('/inscription')]
     public function register()
     {
         $user = new User();

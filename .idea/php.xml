@@ -12,9 +12,6 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/mentorHub/vendor/laminas/laminas-eventmanager" />
-      <path value="$PROJECT_DIR$/mentorHub/vendor/laminas/laminas-zendframework-bridge" />
-      <path value="$PROJECT_DIR$/mentorHub/vendor/laminas/laminas-code" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/phpunit/php-file-iterator" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/phpunit/php-invoker" />
@@ -35,7 +32,6 @@
       <path value="$PROJECT_DIR$/mentorHub/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/psr/log" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/psr/container" />
-      <path value="$PROJECT_DIR$/mentorHub/vendor/friendsofphp/proxy-manager-lts" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/sebastian/lines-of-code" />
@@ -146,6 +142,7 @@
       <path value="$PROJECT_DIR$/mentorHub/vendor/symfony/asset" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/symfony/dotenv" />
       <path value="$PROJECT_DIR$/mentorHub/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/mentorHub/vendor/sensio/framework-extra-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
