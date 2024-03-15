@@ -2,17 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    #[Route('/inscription')]
-    public function register()
+    #[Route(path: '/register.html', name: 'register')]
+    public function register(): \Symfony\Component\HttpFoundation\Response
     {
+        #create user 'vide', rempli par la suite avec les donnees uset
+
         $user = new User();
 
-        $form = $this -> CreateForm(UserType::class, $user);
+        # create form
+        $form = $this->createForm(UserType::class, $user);
         return $this->render('user/register.html.twig');
     }
 }
