@@ -26,12 +26,12 @@ class UserType extends AbstractType
         $builder
             ->add('fullName', TextType::class)
             ->add('email', EmailType::class)
-            ->add('isAttending', ChoiceType::class, options:[
+            /**->add('isAttending', ChoiceType::class, options:[
                     'choices' => [
                         'mentor' => yes,
                         'mentee'=> no,
                     ],
-            ])
+            ])**/
             ->add('password', PasswordType::class)
 
             ->add('submit', SubmitType::class)
