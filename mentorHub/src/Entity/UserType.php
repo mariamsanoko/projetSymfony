@@ -2,43 +2,40 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\UserTypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: UserTypeRepository::class)]
+class UserType implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    #[ORM\Column]
+    private array $roles = [];
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
      */
-    private $password;
+    #[ORM\Column]
+    private ?string $password = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $fullname;
+    #[ORM\OneToMany(mappedBy: 'userType', targetEntity: Mentorsession::class)]
+    private Collection $Mentor;
+
+    public function __construct()
+    {
+        $this->Mentor = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -50,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -87,7 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(array $roles): static
     {
         $this->roles = $roles;
 
@@ -102,7 +99,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $password): static
     {
         $this->password = $password;
 
@@ -123,20 +120,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
-    public function getFullname(): ?string
+    /**
+     * @return Collection<int, Mentorsession>
+     */
+    public function getMentor(): Collection
     {
-        return $this->fullname;
+        return $this->Mentor;
     }
 
-    public function setFullname(string $fullname): self
+    public function addMentor(Mentorsession $mentor): static
     {
-        $this->fullname = $fullname;
+        if (!$this->Mentor->contains($mentor)) {
+            $this->Mentor->add($mentor);
+            $mentor->setUserType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMentor(Mentorsession $mentor): static
+    {
+        if ($this->Mentor->removeElement($mentor)) {
+            // set the owning side to null (unless already changed)
+            if ($mentor->getUserType() === $this) {
+                $mentor->setUserType(null);
+            }
+        }
 
         return $this;
     }

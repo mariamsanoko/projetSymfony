@@ -32,6 +32,9 @@ class Mentorsession
     #[ORM\Column(length: 255)]
     private ?string $relation = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Mentor')]
+    private ?UserType $userType = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Mentorsession
     public function setRelation(string $relation): static
     {
         $this->relation = $relation;
+
+        return $this;
+    }
+
+    public function getUserType(): ?UserType
+    {
+        return $this->userType;
+    }
+
+    public function setUserType(?UserType $userType): static
+    {
+        $this->userType = $userType;
 
         return $this;
     }
