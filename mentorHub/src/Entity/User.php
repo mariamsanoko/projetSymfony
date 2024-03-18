@@ -2,15 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\UserTypeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserTypeRepository::class)]
-class UserType implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,14 +26,6 @@ class UserType implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
-
-    #[ORM\OneToMany(mappedBy: 'userType', targetEntity: Mentorsession::class)]
-    private Collection $Mentor;
-
-    public function __construct()
-    {
-        $this->Mentor = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -124,35 +114,5 @@ class UserType implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    /**
-     * @return Collection<int, Mentorsession>
-     */
-    public function getMentor(): Collection
-    {
-        return $this->Mentor;
-    }
-
-    public function addMentor(Mentorsession $mentor): static
-    {
-        if (!$this->Mentor->contains($mentor)) {
-            $this->Mentor->add($mentor);
-            $mentor->setUserType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMentor(Mentorsession $mentor): static
-    {
-        if ($this->Mentor->removeElement($mentor)) {
-            // set the owning side to null (unless already changed)
-            if ($mentor->getUserType() === $this) {
-                $mentor->setUserType(null);
-            }
-        }
-
-        return $this;
     }
 }
