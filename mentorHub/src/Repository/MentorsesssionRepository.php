@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Mentorsession;
+use App\Entity\Mentorsesssion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Mentorsession>
+ * @extends ServiceEntityRepository<Mentorsesssion>
  *
- * @method Mentorsession|null find($id, $lockMode = null, $lockVersion = null)
- * @method Mentorsession|null findOneBy(array $criteria, array $orderBy = null)
- * @method Mentorsession[]    findAll()
- * @method Mentorsession[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Mentorsesssion|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Mentorsesssion|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Mentorsesssion[]    findAll()
+ * @method Mentorsesssion[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MentorsessionRepository extends ServiceEntityRepository
+class MentorsesssionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Mentorsession::class);
+        parent::__construct($registry, Mentorsesssion::class);
     }
 
 //    /**
-//     * @return Mentorsession[] Returns an array of Mentorsession objects
+//     * @return Mentorsesssion[] Returns an array of Mentorsesssion objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class MentorsessionRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Mentorsession
+//    public function findOneBySomeField($value): ?Mentorsesssion
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')
