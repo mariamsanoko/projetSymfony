@@ -1,17 +1,18 @@
 {% extends "base.html.twig" %}
 
+
 {% block title %}Accueil MentorHub{% endblock %}
 
 {% block body %}
+    {% include'components/_carrousel.html.twig' %}
 
     <div class="container">
-        <div class="row">
 
-            <div class="col-6 mx-auto">
+    <div class="row">
 
+            <div class="col-12">
                 <h1 class="display-4">Find a your MentorHub</h1>
 
-                <img src="{{ asset('assets/images/jetee-au-bord-lac-hallstatt-autriche_181624-44201.avif') }}">
 
                 <p class="col-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cupiditate dolor exercitationem explicabo ipsa,
                     maiores minima minus mollitia nam necessitatibus numquam officiis quis, quod quos, reprehenderit rerum tempora unde
@@ -19,5 +20,6 @@
 
         </div>
     </div>
+
 
 {% endblock %}
