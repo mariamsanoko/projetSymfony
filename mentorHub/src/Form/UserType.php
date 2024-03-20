@@ -29,12 +29,14 @@ class UserType extends AbstractType
             ->add('password', PasswordType::class, [
         'label' => 'Mot de passe'
             ])
-
+            ->add('mentorsessions', TextType::class, [
+                'label' => 'Session Mentoring'
+            ])
             ->add('submit', SubmitType::class, [
         'label' => 'Envoyer'
         ])
 
-           
+
         ;
     }
 
