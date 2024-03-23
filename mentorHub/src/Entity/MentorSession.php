@@ -26,6 +26,10 @@ class MentorSession
     #[ORM\Column]
     private ?int $nbParticipant = null;
 
+    #[ORM\ManyToOne(inversedBy: 'learns')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +79,18 @@ class MentorSession
     public function setNbParticipant(int $nbParticipant): static
     {
         $this->nbParticipant = $nbParticipant;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

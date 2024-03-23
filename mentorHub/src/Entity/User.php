@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -36,6 +38,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $fullName = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: MentorSession::class)]
+    private Collection $learns;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Pay $upskills = null;
+
+    public function __construct()
+    {
+        $this->learns = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +175,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $lastName): static
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(string $fullName): static
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MentorSession>
+     */
+    public function getLearns(): Collection
+    {
+        return $this->learns;
+    }
+
+    public function addLearn(MentorSession $learn): static
+    {
+        if (!$this->learns->contains($learn)) {
+            $this->learns->add($learn);
+            $learn->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLearn(MentorSession $learn): static
+    {
+        if ($this->learns->removeElement($learn)) {
+            // set the owning side to null (unless already changed)
+            if ($learn->getUser() === $this) {
+                $learn->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUpskills(): ?Pay
+    {
+        return $this->upskills;
+    }
+
+    public function setUpskills(Pay $upskills): static
+    {
+        $this->upskills = $upskills;
 
         return $this;
     }

@@ -27,7 +27,7 @@ class Catalog
         return $this->id;
     }
 
-    public function getNameCourse(): ?string
+    public function getNameCoursse(): ?string
     {
         return $this->nameCourse;
     }
