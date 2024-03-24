@@ -1,3 +1,7 @@
 body {
-    background:#000000 ;
+    background-color:blue;
+}
+.form-label {
+    color: black;
+    font-size: 2rem;
 }

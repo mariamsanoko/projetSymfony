@@ -4,9 +4,16 @@
 
 {% block body %}
    
-<h1>Create new Category</h1>
-
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1  class="display-3 mt-5">Créer nouvelle Catégorie</h1>
+       </div>
     {{ include('category/_form.html.twig') }}
+    </div>
+    <br>
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
+    <a class="btn btn-secondary" {{ path('app_category_index') }}">retour aux catégorie</a>
+</div>
+</div>
 {% endblock %}
