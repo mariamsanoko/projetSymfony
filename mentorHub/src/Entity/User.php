@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -30,33 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $firstname = null;
-
-    #[ORM\OneToOne(targetEntity: self::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?self $mentorsessions = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $lastName = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $fullName = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: MentorSession::class)]
-    private Collection $learns;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Pay $upskills = null;
-
-    #[ORM\ManyToMany(targetEntity: Course::class, mappedBy: 'upskills')]
-    private Collection $courses;
-
-    public function __construct()
-    {
-        $this->learns = new ArrayCollection();
-        $this->courses = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -147,42 +119,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): static
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getMentorsessions(): ?self
-    {
-        return $this->mentorsessions;
-    }
-
-    public function setMentorsessions(self $mentorsessions): static
-    {
-        $this->mentorsessions = $mentorsessions;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): static
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
     public function getFullName(): ?string
     {
         return $this->fullName;
@@ -191,75 +127,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFullName(string $fullName): static
     {
         $this->fullName = $fullName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, MentorSession>
-     */
-    public function getLearns(): Collection
-    {
-        return $this->learns;
-    }
-
-    public function addLearn(MentorSession $learn): static
-    {
-        if (!$this->learns->contains($learn)) {
-            $this->learns->add($learn);
-            $learn->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLearn(MentorSession $learn): static
-    {
-        if ($this->learns->removeElement($learn)) {
-            // set the owning side to null (unless already changed)
-            if ($learn->getUser() === $this) {
-                $learn->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getUpskills(): ?Pay
-    {
-        return $this->upskills;
-    }
-
-    public function setUpskills(Pay $upskills): static
-    {
-        $this->upskills = $upskills;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Course>
-     */
-    public function getCourses(): Collection
-    {
-        return $this->courses;
-    }
-
-    public function addCourse(Course $course): static
-    {
-        if (!$this->courses->contains($course)) {
-            $this->courses->add($course);
-            $course->addUpskill($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCourse(Course $course): static
-    {
-        if ($this->courses->removeElement($course)) {
-            $course->removeUpskill($this);
-        }
 
         return $this;
     }
