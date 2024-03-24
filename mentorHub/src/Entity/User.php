@@ -49,9 +49,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Pay $upskills = null;
 
+    #[ORM\ManyToMany(targetEntity: Course::class, mappedBy: 'upskills')]
+    private Collection $courses;
+
     public function __construct()
     {
         $this->learns = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -229,6 +233,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpskills(Pay $upskills): static
     {
         $this->upskills = $upskills;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Course>
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): static
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses->add($course);
+            $course->addUpskill($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): static
+    {
+        if ($this->courses->removeElement($course)) {
+            $course->removeUpskill($this);
+        }
 
         return $this;
     }

@@ -11,27 +11,25 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
-{   #[Route('inscription.html')]
-    public function register(Request $request,
-                             UserPasswordHasherInterface $hasher,
-                             EntityManagerInterface $manager)
+{   #[Route('register.html')]
+    public function register(Request $request, UserPasswordHasherInterface $hasher,EntityManagerInterface $manager)
     {
         #dd($request);
         # verify data the send to form
 
         #create user vide
         $user = new User();
-        # dump($user); object null
+        dump($user); #  object null
 
         #create form
         $form = $this->createForm(UserType::class, $user);
 
-        #Pass the request of Tratement user Form
+        #Pass the request of Traitement user Form
         $form->handleRequest($request);
 
         # is submitted by user
-        if ($form->isSubmitted() && $form->isValid()) {
-                #dd($user);
+        if ($form->isSubmitted()) {
+               # dd($user);
 
             // Encode de password
             $hashedPassword = $hasher->hashPassword($user, $user->getPassword());

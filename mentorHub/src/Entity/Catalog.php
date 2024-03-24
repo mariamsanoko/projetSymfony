@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CatalogRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CatalogRepository::class)]
@@ -21,6 +23,14 @@ class Catalog
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Course::class, mappedBy: 'stores')]
+    private Collection $courses;
+
+    public function __construct()
+    {
+        $this->courses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +69,33 @@ class Catalog
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Course>
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): static
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses->add($course);
+            $course->addStore($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): static
+    {
+        if ($this->courses->removeElement($course)) {
+            $course->removeStore($this);
+        }
 
         return $this;
     }

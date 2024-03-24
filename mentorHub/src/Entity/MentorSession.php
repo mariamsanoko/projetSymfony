@@ -30,6 +30,9 @@ class MentorSession
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\OneToOne(mappedBy: 'learns', cascade: ['persist', 'remove'])]
+    private ?Mentor $mentor = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,28 @@ class MentorSession
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getMentor(): ?Mentor
+    {
+        return $this->mentor;
+    }
+
+    public function setMentor(?Mentor $mentor): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($mentor === null && $this->mentor !== null) {
+            $this->mentor->setLearns(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($mentor !== null && $mentor->getLearns() !== $this) {
+            $mentor->setLearns($this);
+        }
+
+        $this->mentor = $mentor;
 
         return $this;
     }

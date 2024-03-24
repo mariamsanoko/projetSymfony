@@ -33,9 +33,7 @@ class UserController extends AbstractController
             ->add('password', PasswordType::class, [
         'label' => 'Mot de passe'
             ])
-            ->add('mentorsessions', IntegerType::class, [
-                'label' => 'Session Mentoring'
-            ])
+           
             ->add('submit', SubmitType::class, [
         'label' => 'Envoyer'
         ])
