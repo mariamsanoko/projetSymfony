@@ -2,6 +2,8 @@
 
 namespace App\Controller\Controller;
 
+use App\Repository\CatalogRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\MentorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,16 +28,18 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/category/{slug}')]
+    #[Route(data: '/categorie/{id}')]
     /* # Ex. http://127.0.0.1:8000/category/politique
      * # Ex. http://127.0.0.1:8000/category/economie
      * # {slug} représente un paramètre de la route.*/
 
 
-    public function category($slug)
+    public function category($id, CategoryRepository $categoryRepository)
     {
+        $category = $categoryRepository->find($id);
+       # dd($category);
         return $this->render('default/category.html.twig', [
-            'slug' => $slug,
+            'category' => $category,
         ]);
     }
 
