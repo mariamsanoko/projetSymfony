@@ -37,6 +37,12 @@ class Mentor
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'author')]
+    private ?Category $category = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mentorName = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -139,6 +145,30 @@ class Mentor
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getMentorName(): ?string
+    {
+        return $this->mentorName;
+    }
+
+    public function setMentorName(string $mentorName): static
+    {
+        $this->mentorName = $mentorName;
 
         return $this;
     }

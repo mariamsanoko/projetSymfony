@@ -11,13 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-/**
- * récupérer les fiche des 3 mentors de ma base
- * find: trouver par l'id  ($id, $lockMode = null, $lockVersion = null)
- * findOneBy      (array $criteria, array $orderBy = null)
- * findAll():
- * findBy() :
-*/
+    /**
+     * récupérer les fiche des 3 mentors de ma base
+     * find: trouver par l'id  ($id, $lockMode = null, $lockVersion = null)
+     * findOneBy : Récuperer un element via des critère Un mentor via son slug   (array $criteria, array $orderBy = null)
+     * findAll():
+     * findBy() :
+    */
     #[Route('/')]
     // Ex. http://127.0.0.1:8000/
     public function home(MentorRepository $mentorRepository): Response
@@ -29,8 +29,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route(data: '/categorie/{id}')]
-    /* # Ex. http://127.0.0.1:8000/category/politique
-     * # Ex. http://127.0.0.1:8000/category/economie
+    /* # Ex. http://127.0.0.1:8000/categorie/3
      * # {slug} représente un paramètre de la route.*/
 
 
