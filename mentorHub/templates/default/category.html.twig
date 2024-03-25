@@ -1,11 +1,13 @@
 
 {% extends "base.html.twig" %}
-{% block title %}Category{% endblock %}
+
+{% block title %}Categorie {{ category.name }}{% endblock %}
+
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-6 mx-auto">
-            <h1>Category : </h1>
+            <h1 class="display-3 mt-5">{{ category.name }}</h1>
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
                 <div class="card-body">
@@ -14,8 +16,8 @@
                 </div>
                 <hr>
                 <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <a class="btn btn-primary" href="#" class="card-link">Card link</a>
+                    <a class="btn btn-primary"href="#" class="card-link">Another link</a>
                 </div>
             </div>
         </div>
