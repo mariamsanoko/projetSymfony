@@ -34,6 +34,9 @@ class Mentor
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'mentors')]
     private Collection $tags;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -124,6 +127,18 @@ class Mentor
     public function removeTag(Tag $tag): static
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
