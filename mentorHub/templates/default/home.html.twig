@@ -4,23 +4,27 @@
 {% block title %}Accueil MentorHub{% endblock %}
 
 {% block body %}
-    {% include'components/_carrousel.html.twig' %}
-
     <div class="container">
-
     <div class="row">
+    <h1  class="display-3 mt-5">Nos mentors</h1>
+    {% for mentor in mentors%}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ mentor.image }}" alt="" class="img-fluid">
+                    <h5 class="card-title">{{ mentor.bio }}</h5>
 
-            <div class="col-12">
-                <h1 class="display-4">Find a your MentorHub</h1>
-
-
-                <p class="col-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cupiditate dolor exercitationem explicabo ipsa,
-                    maiores minima minus mollitia nam necessitatibus numquam officiis quis, quod quos, reprehenderit rerum tempora unde
-                    voluptatibus.</p>
-
+                </div>
+            </div>
         </div>
-    </div>
 
+    {% else %}
+        <div class="alert alert-info">
+            Pas de Mentor  pour le moment.
+        </div>
+    {% endfor %}
+
+    {% include'components/_carrousel.html.twig' %}
 
 
 {% endblock %}

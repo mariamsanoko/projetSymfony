@@ -2,18 +2,28 @@
 
 namespace App\Controller\Controller;
 
+use App\Repository\MentorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-
+/**
+ * récupérer les fiche des 3 mentors de ma base
+ * find: trouver par l'id  ($id, $lockMode = null, $lockVersion = null)
+ * findOneBy      (array $criteria, array $orderBy = null)
+ * findAll():
+ * findBy() :
+*/
     #[Route('/')]
     // Ex. http://127.0.0.1:8000/
-    public function home(): Response
+    public function home(MentorRepository $mentorRepository): Response
     {
-        return $this->render('default/home.html.twig');
+        return $this->render('default/home.html.twig', [
+            'mentors' => $mentorRepository->findAll()
+
+        ]);
     }
 
     #[Route('/category/{slug}')]
