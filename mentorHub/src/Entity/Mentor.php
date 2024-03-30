@@ -43,6 +43,10 @@ class Mentor
     #[ORM\Column(length: 255)]
     private ?string $mentorName = null;
 
+    #[ORM\ManyToOne(inversedBy: 'mentors')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $categories = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -169,6 +173,18 @@ class Mentor
     public function setMentorName(string $mentorName): static
     {
         $this->mentorName = $mentorName;
+
+        return $this;
+    }
+
+    public function getCategories(): ?Category
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Category $categories): static
+    {
+        $this->categories = $categories;
 
         return $this;
     }

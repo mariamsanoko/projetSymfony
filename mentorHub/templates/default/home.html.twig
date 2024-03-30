@@ -8,14 +8,14 @@
     <div class="row">
     <h1  class="display-3 mt-5 mb-3">Nos mentors</h1>
 
-    {% for mentor in mentors %}
+    {% for mentors in mentor %}
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ mentor.mentorName }}</h5>
-                    <h6 class="card-title">{{ mentor.slug }}</h6>
-                    <img src="{{ mentor.image }}" alt="" class="img-fluid">
-                    <h5 class="card-title">{{ mentor.bio }}</h5>
+                    <h5 class="card-title">{{ mentors.mentorName }}</h5>
+                    <h6 class="card-title">{{ mentors.slug }}</h6>
+                    <img src="{{ mentors.image }}" alt="" class="img-fluid">
+                    <h5 class="card-title">{{ mentors.bio }}</h5>
 
                 </div>
             </div>
@@ -27,7 +27,7 @@
         </div>
     {% endfor %}
 
-    {% include'components/_carrousel.html.twig' %}
+
 
 
 {% endblock %}

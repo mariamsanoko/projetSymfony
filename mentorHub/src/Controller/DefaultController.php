@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Controller;
+namespace App\Controller; // Mettez le namespace correct correspondant au chemin de votre contrôleur
 
 use App\Repository\CatalogRepository;
 use App\Repository\CategoryRepository;
@@ -12,31 +12,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
-     * récupérer les fiche des 3 mentors de ma base
+     * récupérer les fiches des 3 mentors de ma base
      * find: trouver par l'id  ($id, $lockMode = null, $lockVersion = null)
      * findOneBy : Récuperer un element via des critère Un mentor via son slug   (array $criteria, array $orderBy = null)
      * findAll():
      * findBy() :
-    */
+     */
     #[Route('/')]
     // Ex. http://127.0.0.1:8000/
     public function home(MentorRepository $mentorRepository): Response
     {
         return $this->render('default/home.html.twig', [
-            'mentors' => $mentorRepository->findAll()
-
+            'mentor' => $mentorRepository->findAll()
         ]);
     }
 
-    #[Route(data: '/categorie/{id}')]
+    #[Route('/categorie/{id}')]
     /* # Ex. http://127.0.0.1:8000/categorie/3
      * # {slug} représente un paramètre de la route.*/
-
-
     public function category($id, CategoryRepository $categoryRepository)
     {
         $category = $categoryRepository->find($id);
-       # dd($category);
+        # dd($category);
         return $this->render('default/category.html.twig', [
             'category' => $category,
         ]);
