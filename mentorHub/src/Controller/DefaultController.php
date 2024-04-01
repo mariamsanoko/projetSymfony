@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
     public function home(MentorRepository $mentorRepository): Response
     {
         return $this->render('default/home.html.twig', [
-            'mentor' => $mentorRepository->findAll()
+            'mentors' => $mentorRepository->findAll()
         ]);
     }
 
