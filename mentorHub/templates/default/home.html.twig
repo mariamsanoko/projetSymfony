@@ -4,11 +4,13 @@
 {% block title %}Accueil MentorHub{% endblock %}
 
 {% block body %}
-    <div class="container">
-    <div class="row">
-    <h1  class="display-4 mt-5 mb-3">Nos mentors</h1>
 
-    {% for mentors in mentors %}
+{% include'components/_carrousel.html.twig' %}
+    <div class="container">
+        <div class="row">     
+            <h1  class="display-4 mt-5 mb-3">Nos mentors</h1>
+        
+        {% for mentors in mentors %}
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -33,7 +35,5 @@
         </div>
     {% endfor %}
 
-
-
-
+  
 {% endblock %}
