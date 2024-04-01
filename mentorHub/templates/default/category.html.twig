@@ -1,28 +1,32 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Categorie : {{ category.name }}{% endblock %}
+
+{% block title %}Catégorie : {{ category.name}}{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
 
-            <div class="col-6 mx-auto">
-                <h1  class="display-5 mt-5">{{ category.name }}</h1>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ category.name }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <a class="btn btn-primary" href="#" class="card-link">Card link</a>
-                            <a class="btn btn-primary"href="#" class="card-link">Another link</a>
-                    </div>
+{% include'components/_carrousel.html.twig' %}
+    <div class="container">
+        <div class="row">     
+            <h1  class="display-4 mt-5 mb-3">{{ category.name}}</h1>
+        
+        {% for mentors in category.mentors %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ mentors.mentorName }}</h3>
+                    <img src="{{ mentors.image }}" alt="" class="img-fluid">
+                    <h4 class="card-title">{{ mentors.slug }}</h4>
+                     <p class="card-title">{{ mentors.bio }}</p>
                 </div>
             </div>
-
         </div>
-    </div>
 
+    {% else %}
+        <div class="alert alert-info">
+            Pas de mentor pour le moment.
+        </div>
+    {% endfor %}
+
+   
 {% endblock %}

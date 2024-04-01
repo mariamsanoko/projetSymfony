@@ -31,11 +31,26 @@ class DefaultController extends AbstractController
     /* # Ex. http://127.0.0.1:8000/categorie/3
      * # {slug} représente un paramètre de la route.*/
     public function category($id, CategoryRepository $categoryRepository)
-    {
+
+    {   #recuprer la categorie via son ID
         $category = $categoryRepository->find($id);
         # dd($category);
         return $this->render('default/category.html.twig', [
             'category' => $category,
+        ]);
+    }
+
+
+    #[Route('/mentor/{slug}')]
+    /* # Ex. http://127.0.0.1:8000/categorie/3
+     * # {slug} représente un paramètre de la route.*/
+    public function mentor($slug, MentorRepository $mentorRepository)
+
+    {   #recuprer la categorie via son ID
+        $mentor = $mentorRepository->findOneBy(['slug'=> $slug]);
+        # dd($mentor);
+        return $this->render('default/category.html.twig', [
+            'mentor' => $mentor,
         ]);
     }
 
