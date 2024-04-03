@@ -7,11 +7,9 @@
         <div class="row">
             <div class="col-6 mx-auto">
                 <h1>Créer votre compte</h1>
-                {% set formBuilder = form.factory.createNamedBuilder(null, form.vars.full_name) %}
-                {% set form = formBuilder.getForm() %}
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
+
+                {{ form(form) }}
+             
             </div>
         </div>
     </div>

@@ -9,13 +9,14 @@ use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class UserController extends AbstractController
 {
     /**
      * @return Response
      */
     #[Route('/inscription.html')]
-    public function register(Request $request): Response
+    public function register()
     {
         #create user empty
         $user= new User();
