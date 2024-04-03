@@ -16,10 +16,18 @@ namespace App\Form {
         public function buildForm(FormBuilderInterface $builder, array $options): void
         {
             $builder
-                ->add('fullName', TextType::class)
-                ->add('email', EmailType::class)
-                ->add('password', PasswordType::class)
-                ->add('submit', SubmitType::class)
+                ->add('fullName', TextType::class, [
+                    'label' => 'Prénom Nom'
+                ])
+                ->add('email', EmailType::class,[
+                    'label' => 'E-mail'
+                ])
+                ->add('password', PasswordType::class,[
+                    'label' => 'Mot de passe'
+                    ])
+                ->add('submit', SubmitType::class,[
+                    'label' => 'Envoyer'
+                ])
             ;
         }
 
