@@ -41,7 +41,7 @@ class UserController extends AbstractController
             #save to Mysql
             $manager->persist($user);
             $manager->flush();
-            
+
             #redirection
             return $this->redirectToRoute('app_default_home');
 
