@@ -3,13 +3,15 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-   <br/>
     <div class="container">
         <div class="row">
             <div class="col-6 mx-auto">
-                <h1 class="display-6">Inscription</h1>
-                <h2>Créer votre compte</h2>
-                {{ form(form) }}
+                <h1>Créer votre compte</h1>
+                {% set formBuilder = form.factory.createNamedBuilder(null, form.vars.full_name) %}
+                {% set form = formBuilder.getForm() %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
