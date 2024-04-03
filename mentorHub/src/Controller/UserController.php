@@ -42,8 +42,10 @@ class UserController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
+            #notification
+            $this->addFlash('success', "Félicitation, vous pouvez vous connecter.");
             #redirection
-            return $this->redirectToRoute('app_default_home');
+            return $this->redirectToRoute('app_login');
 
         }
         #Pass form to view
