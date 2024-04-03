@@ -1,20 +1,13 @@
 {% extends 'template.html.twig' %}
 
-{% block title %}Hello TemplateController!{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/MAMP/htdocs/projetSymfony/mentorHub/src/Controller/TemplateController.php'|file_link(0) }}">src/Controller/TemplateController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/MAMP/htdocs/projetSymfony/mentorHub/templates/template/index.html.twig'|file_link(0) }}">templates/template/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% block stylesheets %}
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+{% endblock %}
 {% endblock %}
