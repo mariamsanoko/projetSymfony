@@ -210,11 +210,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712139237900</updated>
-      <workItem from="1712139239476" duration="13562000" />
+      <workItem from="1712139239476" duration="14756000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/base.html.twig</url>
+          <line>23</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
