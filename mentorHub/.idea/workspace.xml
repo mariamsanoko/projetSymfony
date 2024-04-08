@@ -187,7 +187,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/admin" />
+      <recent name="$PROJECT_DIR$/public/assets/admin/css" />
+      <recent name="$PROJECT_DIR$/public/assets/admin/img" />
+      <recent name="$PROJECT_DIR$/public/assets/admin" />
+      <recent name="$PROJECT_DIR$/src/Controller" />
+      <recent name="$PROJECT_DIR$/templates/template" />
     </key>
   </component>
   <component name="RunManager">
@@ -212,7 +216,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712139237900</updated>
       <workItem from="1712139239476" duration="14756000" />
-      <workItem from="1712160608381" duration="5411000" />
+      <workItem from="1712160608381" duration="7282000" />
     </task>
     <servers />
   </component>
