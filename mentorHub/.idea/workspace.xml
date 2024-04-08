@@ -185,6 +185,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/admin" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
@@ -207,7 +212,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712139237900</updated>
       <workItem from="1712139239476" duration="14756000" />
-      <workItem from="1712160608381" duration="3044000" />
+      <workItem from="1712160608381" duration="5411000" />
     </task>
     <servers />
   </component>
