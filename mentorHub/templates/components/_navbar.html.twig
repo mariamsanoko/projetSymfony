@@ -13,17 +13,21 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_category_index')}}">Nos Mentors</a>
+                    <a class="nav-link" href="#">Nos Mentors</a>
                 </li>
+                {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
+                </li>
+                {% else %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_login')}}">Connexion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_user_register')}}">Inscription</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
-                </li>
+            {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contacter nous</a>
                 </li>
