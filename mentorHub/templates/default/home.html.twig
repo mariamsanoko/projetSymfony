@@ -4,7 +4,10 @@
 {% block title %}Accueil MentorHub{% endblock %}
 
 {% block body %}
-
+<h1 class="display-4">Bienvenue sur MentorHub</h1>
+        {% if app.user %}
+        Bonjour {{ app.user.fullname}} !
+        {% endif %}
 {% include'components/_carrousel.html.twig' %}
     <div class="container">
         <div class="row">     
