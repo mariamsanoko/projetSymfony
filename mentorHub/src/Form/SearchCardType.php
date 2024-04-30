@@ -12,14 +12,18 @@ class SearchCardType extends AbstractType
     {   
         // define course categories 
         $courses = ['course_1', 'course_2', 'course_3'];
-        $categories = ['category_1', 'category_2','categories_3'];
+        $categories = ['category_1', 'category_2','category_3'];
 
-        $courseChoices = array_combine($courses,$courses);
-        $categoryChoices = array_combine($categories,$categories)
+        //use array_combine to combine 2 tables
+        $courseChoices = array_combine($courses, $courses);
+        $categoryChoices = array_combine($categories, $categories);
 
-       
+       $builder
         ->add('nameCourse', ChoiceType::class, [
             'choices' => [
+                'choices' => $courseChoices,
+                'placeholder' => 'Choisir un cours'
+
                 //'nameCourse'=>'nameCourse',
                 //'mentorName'=>'mentorName',
                 //'createdAt'=>'createdAt',
@@ -28,9 +32,10 @@ class SearchCardType extends AbstractType
             ]
         ])
         ->add('category', ChoiceType::class,[
-            'choices' => [
-
-            ]
+           
+                'choices' => $categoryChoices,
+                'placeholder' => 'Choisir une categorie'
+            
         ]);
     }
 }

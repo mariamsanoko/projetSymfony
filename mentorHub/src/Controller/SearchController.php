@@ -11,9 +11,9 @@ class SearchController extends AbstractController
     public function searchMentor(Request $request)
 
     {
-        $searchMentorForm = $this->createFormBuilder(SearchCardType::class);
+        $searchMentorForm = $this->createForm(SearchCardType::class);
         return $this->render('search/mentor.html.twig', [
-            'search_form' => $searchMentorForm-> $searchMentorForm->createView(),
+            'search_form' => $searchMentorForm->createView(),
         ]);
     }
 }
