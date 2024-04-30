@@ -13,7 +13,7 @@ class SearchController extends AbstractController
     {
         $searchMentorForm = $this->createForm(SearchCardType::class);
         return $this->render('search/mentor.html.twig', [
-            'search_form' => $searchMentorForm->createView(),
+            'search_mentor' => $searchMentorForm->createView(),
         ]);
     }
 }

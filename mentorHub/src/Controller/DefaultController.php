@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
     /**
      * récupérer les fiches des 3 mentors de ma base
      * find: trouver par l'id  ($id, $lockMode = null, $lockVersion = null)
-     * findOneBy : Récuperer un element via des critère Un mentor via son slug   (array $criteria, array $orderBy = null)
+     * findOneBy : Récuperer un element via des critère Un mentor via son slug (array $criteria, array $orderBy = null)
      * findAll():
      * findBy() :
      */
@@ -68,7 +68,7 @@ class DefaultController extends AbstractController
     // {slug} représente un paramètre de la route.
     public function searchSpecialite($specialite)
     {
-        # TODO Rechercher dans ma BDD tous les medecins qui font cette spécialité.
+        # TODO Rechercher dans ma BDD tous les categories qui font cette spécialité.
         # TODO Retourner le résultat dans ma vue, pour affichage...
 
         return new Response("
