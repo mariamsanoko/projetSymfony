@@ -10,16 +10,18 @@
          {% if app.user %}
          Bonjour {{ app.user.fullname}} !
             {% endif %}
-        {% include'components/_carrousel.html.twig' %}
+      
     </div>
 </div>
-
+{% include'components/_carrousel.html.twig' %}
 <div class="container">
     <h2 class="display-6  mt-3 mb-3">MentorHub : recherchez votre Mentor ?</h2>
         <div class="section">
-        <div class="row">
-        <a href="{{ path('search_mentor')}}" class="btn  mt-3 mb-3">Recherche Avancée</a>
-    </div></div></div>
+            <div class="row">
+             <a href="{{ path('search_mentor')}}" class="btn  mt-3 mb-3">Recherche Avancée</a>
+            </div>
+        </div>
+</div>
    
    <div class="container">
         <div class="row">     
@@ -37,7 +39,7 @@
                     <hr>
                     <div class="card-body ">
                          <a class="btn btn-primary" href="#" class="card-link">Voir le profile</a>
-                         <a class="btn btn-primary"href="#" class="card-link">Mentorat Session</a>
+                         <a class="btn btn-secondary"href="#" class="card-link">Mentorat Session</a>
                     </div>
 
                 </div>
