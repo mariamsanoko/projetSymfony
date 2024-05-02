@@ -53,7 +53,16 @@ class DefaultController extends AbstractController
             'mentor' => $mentor,
         ]);
     }
+    #[Route('/categories/{slug}')]
 
+    public function categories($slug)
+    {
+        return $this->render('default/categories.html.twig', [
+            'slug' => $slug
+        ]);
+
+    }
+    
     #[Route('/page/contact.html')]
     // Ex. http://127.0.0.1:8000/page/contact.html
     public function contact()
@@ -68,7 +77,7 @@ class DefaultController extends AbstractController
     // {slug} représente un paramètre de la route.
     public function searchSpecialite($specialite)
     {
-        # TODO Rechercher dans ma BDD tous les categories qui font cette spécialité.
+        # TODO Rechercher dans ma BDD tous les mentors qui font cette spécialité.
         # TODO Retourner le résultat dans ma vue, pour affichage...
 
         return new Response("
