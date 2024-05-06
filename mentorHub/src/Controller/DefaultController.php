@@ -73,7 +73,7 @@ class DefaultController extends AbstractController
         ');
     }
 
-    #[Route('/search/{specialite}')]
+    //#[Route('/search/{specialite}')]
     // {slug} représente un paramètre de la route.
     public function searchSpecialite($specialite)
     {

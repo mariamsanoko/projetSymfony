@@ -31,7 +31,7 @@ class UserController extends AbstractController
        # traitment request
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             ##dd($user);
 
             #Encodage du mot de passe

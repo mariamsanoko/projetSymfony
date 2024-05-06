@@ -9,6 +9,9 @@ namespace App\Form {
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
+    use Symfony\Component\Validator\Constraints\Length;
+    use Symfony\Component\Validator\Constraints\Regex;
+    use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
     class UserType extends AbstractType
@@ -23,7 +26,24 @@ namespace App\Form {
                     'label' => 'E-mail'
                 ])
                 ->add('password', PasswordType::class,[
-                    'label' => 'Mot de passe'
+                    'label' => 'Mot de passe',
+                    'constraints' => [
+                        new Length([
+                            'min' => 12,
+                            'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
+                        ]),
+                        new Regex([
+                            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/',
+                            'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre',
+                        ]),
+                    ],
+                    ])
+                    ->add('roles', ChoiceType::class, [
+                        'expanded' => true,
+                        'multiple' => true,
+                            'choices'  => [        'Mentor' => 'ROLE_MENTOR',
+                                'Mentoré' => 'ROLE_MENTEE',
+                            ],
                     ])
                 ->add('submit', SubmitType::class,[
                     'label' => 'Envoyer'
