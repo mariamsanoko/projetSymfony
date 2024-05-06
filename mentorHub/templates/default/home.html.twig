@@ -4,7 +4,11 @@
 {% block title %}Accueil MentorHub{% endblock %}
 
 {% block body %}
-<div class="container">
+
+{% include'components/_carrousel.html.twig' %}
+
+<hr>
+<div class="container mt-5">
     <div class="row">
         <h1 class="display-5">Bienvenue sur MentorHub</h1>
          {% if app.user %}
@@ -13,8 +17,12 @@
       
     </div>
 </div>
-{% include'components/_carrousel.html.twig' %}
-<div class="container">
+<div class="container">  
+    <div class="container mt-5"> 
+        <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
+        <p>MentorHub est une plateforme dédiée à la mise en relation entre mentors expérimentés et personnes cherchant à bénéficier de leur expertise et de leurs conseils dans divers domaines.
+        Que vous soyez à la recherche d'un mentor pour vous guider dans votre carrière, vos études, ou tout simplement pour acquérir de nouvelles compétences, MentorHub est là pour vous aider à trouver le mentor parfait.
+    </p>
     <h2 class="display-6  mt-3 mb-3">MentorHub : recherchez votre Mentor ?</h2>
         <div class="section">
             <div class="row">
@@ -23,9 +31,9 @@
         </div>
 </div>
    
-   <div class="container">
+ 
         <div class="row">     
-            <h2  class="display-6 mt-3 mb-3">Nos mentors</h2>
+            <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
         
         {% for mentors in mentors %}
         <div class="col">
