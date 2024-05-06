@@ -12,35 +12,35 @@
     <div class="row">
         <h1 class="display-5">Bienvenue sur MentorHub</h1>
          {% if app.user %}
-         Bonjour {{ app.user.fullname}} !
+            Bonjour {{ app.user.fullname}} !
             {% endif %}
-      
     </div>
 </div>
-<div class="container">  
-    <div class="container mt-5"> 
-        <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
+
+
+<div class="container mt-5">  
+    <div class="row"> 
+        <h2 class="display-6 mt-3 mb-3">Qui sommes-nous ?</h2>
         <p>MentorHub est une plateforme dédiée à la mise en relation entre mentors expérimentés et personnes cherchant à bénéficier de leur expertise et de leurs conseils dans divers domaines.
         Que vous soyez à la recherche d'un mentor pour vous guider dans votre carrière, vos études, ou tout simplement pour acquérir de nouvelles compétences, MentorHub est là pour vous aider à trouver le mentor parfait.
     </p>
-    <h2 class="display-6  mt-3 mb-3">MentorHub : recherchez votre Mentor ?</h2>
+</div>
+    <h2 class="display-6  mt-3 mb-3">Trouvez votre Mentor ?</h2>
         <div class="section">
             <div class="row">
-             <a href="{{ path('search_mentor')}}" class="btn  mt-3 mb-3">Recherche Avancée</a>
+             <a href="{{ path('search_mentor')}}" class="btn  mt-3 ">Recherche Avancée</a>
             </div>
         </div>
 </div>
    
- 
-        <div class="row">     
-            <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
-        
-        {% for mentors in mentors %}
+<div class="container mt-5">  
+    <div class="row">     
+    <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
+    {% for mentors in mentors %}
         <div class="col">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">{{ mentors.mentorName }}</h3>
-
                     <img src="{{ mentors.image }}" alt="" class="img-fluid">
                     <h4 class="card-title">{{ mentors.slug }}</h4>
                      <p class="card-title">{{ mentors.bio }}</p>
@@ -49,7 +49,7 @@
                          <a class="btn btn-primary" href="#" class="card-link">Voir le profile</a>
                          <a class="btn btn-secondary"href="#" class="card-link">Mentorat Session</a>
                     </div>
-
+                </div>
                 </div>
             </div>
         </div>
