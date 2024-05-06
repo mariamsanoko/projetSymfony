@@ -4,6 +4,7 @@
 
 {% block body %}
 
+<div class="container">
     <section class="hero">
        
             <h1 class="display-5">Mentor Profil </h1>
@@ -24,7 +25,7 @@
                                     </div>
                                     <div class="col-lg-6 px-xl-10">
                                         <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                            <h3 class="h2 text-white mb-0">John mark Doe Kyzer</h3>
+                                            <h3 class="h2 text-white mb-0">{{ app.user.fullname}}</h3>
                                             <span class="text-primary">Coach</span>
                                         </div>
                                         <ul class="list-unstyled mb-1-9">
