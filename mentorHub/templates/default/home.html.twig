@@ -7,10 +7,11 @@
 
 {% include'components/_carrousel.html.twig' %}
 
-<hr>
+
 <div class="container mt-5">
     <div class="row">
         <h1 class="display-5">Bienvenue sur MentorHub</h1>
+        <p>Découvrez notre plateforme de mentorat de carrière</p>
          {% if app.user %}
             Bonjour {{ app.user.fullname}} !
             {% endif %}
@@ -40,7 +41,7 @@
                      <p class="card-title">{{ mentors.bio }}</p>
                     <hr>
                     <div class="card-body ">
-                         <a class="btn btn-primary" href="#" class="card-link">Voir le profile</a>
+                         <a class="btn btn-primary" href="{{ path('app_profil_mentor') }}" class="card-link">Voir le profile</a>
                          <a class="btn btn-secondary"href="#" class="card-link">Mentorat Session</a>
                     </div>
                 </div>
