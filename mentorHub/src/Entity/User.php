@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +31,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $fullName = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: MentorSession::class)]
+    private Collection $mentorSessions;
+
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Mentor $mentor = null;
+
+    public function __construct()
+    {
+        $this->courses = new ArrayCollection();
+        $this->mentorSessions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -127,6 +141,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFullName(string $fullName): static
     {
         $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MentorSession>
+     */
+    public function getMentorSessions(): Collection
+    {
+        return $this->mentorSessions;
+    }
+
+    public function addMentorSession(MentorSession $mentorSession): static
+    {
+        if (!$this->mentorSessions->contains($mentorSession)) {
+            $this->mentorSessions->add($mentorSession);
+            $mentorSession->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMentorSession(MentorSession $mentorSession): static
+    {
+        if ($this->mentorSessions->removeElement($mentorSession)) {
+            // set the owning side to null (unless already changed)
+            if ($mentorSession->getUser() === $this) {
+                $mentorSession->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMentor(): ?Mentor
+    {
+        return $this->mentor;
+    }
+
+    public function setMentor(?Mentor $mentor): static
+    {
+        $this->mentor = $mentor;
 
         return $this;
     }

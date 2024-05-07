@@ -1,30 +1,36 @@
 <?php
 
 namespace App\Form;
+use App\Entity\Category;
+use App\Entity\Course;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SearchCardType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Définir des tableaux de choix pour les cours et les catégories
-        $courses = ['course_1', 'course_2', 'course_3'];
-        $categories = ['category_1', 'category_2', 'category_3'];
-
-        // Utiliser array_combine pour combiner les deux tableaux en un tableau associatif
-        $courseChoices = array_combine($courses, $courses);
-        $categoryChoices = array_combine($categories, $categories);
-
         $builder
-            ->add('nameCourse', ChoiceType::class, [
-                'choices' => $courseChoices,
-                'placeholder' => 'Choose a course',
+            ->setMethod('GET')
+            ->add('course', EntityType::class, [
+                'class' => Course::class,
+                'required' => false,
+                'choice_label' => 'title',
+                'label' => 'Vous êtes plutôt ?*',
+                'placeholder' => '-- Choisissez un sujet de mentoring --',
             ])
-            ->add('category', ChoiceType::class, [
-                'choices' => $categoryChoices,
-                'placeholder' => 'Choose a category',
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'required' => false,
+                'choice_label' => 'name',
+                'label' => 'ou Filtrer par catégorie',
+                'placeholder' => '-- Choisissez une catégorie --',
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Rechercher',
             ]);
     }
 }

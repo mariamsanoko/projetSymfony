@@ -26,12 +26,11 @@ class MentorSession
     #[ORM\Column]
     private ?int $nbParticipant = null;
 
-    #[ORM\ManyToOne(inversedBy: 'learns')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
-    #[ORM\OneToOne(mappedBy: 'learns', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'sessions')]
     private ?Mentor $mentor = null;
+
+    #[ORM\ManyToOne(inversedBy: 'mentorSessions')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -86,6 +85,18 @@ class MentorSession
         return $this;
     }
 
+    public function getMentor(): ?Mentor
+    {
+        return $this->mentor;
+    }
+
+    public function setMentor(?Mentor $mentor): static
+    {
+        $this->mentor = $mentor;
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -98,25 +109,4 @@ class MentorSession
         return $this;
     }
 
-    public function getMentor(): ?Mentor
-    {
-        return $this->mentor;
-    }
-
-    public function setMentor(?Mentor $mentor): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($mentor === null && $this->mentor !== null) {
-            $this->mentor->setLearns(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($mentor !== null && $mentor->getLearns() !== $this) {
-            $mentor->setLearns($this);
-        }
-
-        $this->mentor = $mentor;
-
-        return $this;
-    }
 }

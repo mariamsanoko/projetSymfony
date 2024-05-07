@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mes sessions de mentoring
+{% endblock %}
+
+{% block body %}
+    <h2>Mes sessions</h2>
+    <ul>
+        {% for trainingSession in trainingSessions %}
+            <li>{{ trainingSession.trainingName }}</li>
+        {% else %}
+            <li class="alert alert-info">
+                Vous n'avez pas de session en cours
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

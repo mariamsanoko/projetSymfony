@@ -5,55 +5,60 @@
 
 {% block body %}
 
-{% include'components/_carrousel.html.twig' %}
+    {% include'components/_carrousel.html.twig' %}
 
 
-<div class="container mt-5">
-    <div class="row">
-        <h1 class="display-5">Bienvenue sur MentorHub</h1>
-        <p>Découvrez notre plateforme de mentorat de carrière</p>
-         {% if app.user %}
-            Bonjour {{ app.user.fullname}} !
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="display-5">Bienvenue sur MentorHub</h1>
+            <p>Découvrez notre plateforme de mentorat de carrière</p>
+            {% if app.user %}
+                Bonjour {{ app.user.fullname }} !
             {% endif %}
+        </div>
     </div>
-</div>
 
 
-<div class="container mt-5">  
-    <div class="row"> 
+    <div class="container mt-5">
+    <div class="row">
         <h2 class="display-6 mt-3 mb-3">Qui sommes-nous ?</h2>
-        <p>MentorHub est une plateforme dédiée à la mise en relation entre mentors expérimentés et personnes cherchant à bénéficier de leur expertise et de leurs conseils dans divers domaines.
-        Que vous soyez à la recherche d'un mentor pour vous guider dans votre carrière, vos études, ou tout simplement pour acquérir de nouvelles compétences, MentorHub est là pour vous aider à trouver le mentor parfait.
-    </p>
-    
-</div>
-   
-<div class="container mt-5">  
-    <div class="row">     
-    <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
-    {% for mentors in mentors %}
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">{{ mentors.mentorName }}</h3>
-                    <img src="{{ mentors.image }}" alt="" class="img-fluid">
-                    <h4 class="card-title">{{ mentors.slug }}</h4>
-                     <p class="card-title">{{ mentors.bio }}</p>
-                    <hr>
-                    <div class="card-body ">
-                         <a class="btn btn-primary" href="{{ path('app_profil_mentor') }}" class="card-link">Voir le profile</a>
-                         <a class="btn btn-secondary"href="#" class="card-link">Mentorat Session</a>
+        <p>MentorHub est une plateforme dédiée à la mise en relation entre mentors expérimentés et personnes cherchant à
+            bénéficier de leur expertise et de leurs conseils dans divers domaines.
+            Que vous soyez à la recherche d'un mentor pour vous guider dans votre carrière, vos études, ou tout
+            simplement pour acquérir de nouvelles compétences, MentorHub est là pour vous aider à trouver le mentor
+            parfait.
+        </p>
+
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
+            {% for mentor in mentors %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ mentor.user.fullName }}</h3>
+                            <img src="{{ mentor.image }}" alt="" class="img-fluid">
+                            <h4 class="card-title">{{ mentor.slug }}</h4>
+                            <p class="card-title">{{ mentor.bio }}</p>
+                            <hr>
+                            <div class="card-body ">
+                                <a class="btn btn-primary" href="{{ path('app_profil_mentor', {'id': mentor.id}) }}"
+                                   class="card-link">Voir le profil</a>
+                                <a class="btn btn-secondary" href="#" class="card-link">Mentorat Session</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-             
-            </div>
-        </div>
 
-    {% else %}
-        <div class="alert alert-info">
-            Pas de Mentor pour le moment.
-        </div>
-    {% endfor %}
+            {% else %}
+                <div class="alert alert-info">
+                    Pas de Mentor pour le moment.
+                </div>
+            {% endfor %}
 
-  
+        </div>
+    </div>
 {% endblock %}

@@ -16,9 +16,6 @@ class Course
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $author = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $trainingDate = null;
 
@@ -43,33 +40,22 @@ class Course
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'courses')]
-    private Collection $upskills;
+    #[ORM\ManyToOne(inversedBy: 'courses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Mentor $mentor = null;
 
-    #[ORM\ManyToMany(targetEntity: Catalog::class, inversedBy: 'courses')]
-    private Collection $stores;
+    #[ORM\OneToMany(mappedBy: 'course', targetEntity: Pay::class)]
+    private Collection $payments;
 
     public function __construct()
     {
-        $this->upskills = new ArrayCollection();
-        $this->stores = new ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): static
-    {
-        $this->author = $author;
-
-        return $this;
     }
 
     public function getTrainingDate(): ?\DateTimeInterface
@@ -168,51 +154,46 @@ class Course
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUpskills(): Collection
+    public function getMentor(): ?Mentor
     {
-        return $this->upskills;
+        return $this->mentor;
     }
 
-    public function addUpskill(User $upskill): static
+    public function setMentor(?Mentor $mentor): static
     {
-        if (!$this->upskills->contains($upskill)) {
-            $this->upskills->add($upskill);
-        }
-
-        return $this;
-    }
-
-    public function removeUpskill(User $upskill): static
-    {
-        $this->upskills->removeElement($upskill);
+        $this->mentor = $mentor;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Catalog>
+     * @return Collection<int, Pay>
      */
-    public function getStores(): Collection
+    public function getPayments(): Collection
     {
-        return $this->stores;
+        return $this->payments;
     }
 
-    public function addStore(Catalog $store): static
+    public function addPayment(Pay $payment): static
     {
-        if (!$this->stores->contains($store)) {
-            $this->stores->add($store);
+        if (!$this->payments->contains($payment)) {
+            $this->payments->add($payment);
+            $payment->setCourse($this);
         }
 
         return $this;
     }
 
-    public function removeStore(Catalog $store): static
+    public function removePayment(Pay $payment): static
     {
-        $this->stores->removeElement($store);
+        if ($this->payments->removeElement($payment)) {
+            // set the owning side to null (unless already changed)
+            if ($payment->getCourse() === $this) {
+                $payment->setCourse(null);
+            }
+        }
 
         return $this;
     }
+
 }

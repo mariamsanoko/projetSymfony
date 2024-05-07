@@ -18,7 +18,7 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: Mentor::class)]
+    #[ORM\ManyToMany(targetEntity: Mentor::class, mappedBy: 'categories')]
     private Collection $mentors;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Category
     {
         if (!$this->mentors->contains($mentor)) {
             $this->mentors->add($mentor);
-            $mentor->setCategories($this);
+            $mentor->addCategory($this);
         }
 
         return $this;
@@ -64,10 +64,7 @@ class Category
     public function removeMentor(Mentor $mentor): static
     {
         if ($this->mentors->removeElement($mentor)) {
-            // set the owning side to null (unless already changed)
-            if ($mentor->getCategories() === $this) {
-                $mentor->setCategories(null);
-            }
+            $mentor->removeCategory($this);
         }
 
         return $this;

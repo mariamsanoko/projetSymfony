@@ -1,6 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block title %}Recherche de Mentors !{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(function() {
+            $('#search_card_course').select2();
+            $('#search_card_category').select2();
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+
+
 {% block body %}
 <div class="container">
     <div class="section">
@@ -9,6 +27,32 @@
                 <h1>Rechercher avancé</h1>
                 
                 {{ form(search_mentor) }}
+
+                <div class="container mt-5">
+                    <div class="row">
+                        <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
+                        {% for mentor in mentors %}
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ mentor.user.fullname }}</h3>
+                                        <img src="{{ mentor.image }}" alt="" class="img-fluid">
+                                        <h4 class="card-title">{{ mentor.slug }}</h4>
+                                        <p class="card-title">{{ mentor.bio }}</p>
+                                        <hr>
+                                        <div class="card-body ">
+                                            <a class="btn btn-primary" href="{{ path('app_profil_mentor', {'id': mentor.id}) }}"
+                                               class="card-link">Voir le profil</a>
+                                            <a class="btn btn-secondary" href="#" class="card-link">Mentorat Session</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
 
             </div>
         </div>

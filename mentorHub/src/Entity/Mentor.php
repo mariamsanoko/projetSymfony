@@ -28,28 +28,30 @@ class Mentor
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\OneToOne(inversedBy: 'mentor', cascade: ['persist', 'remove'])]
-    private ?MentorSession $learns = null;
-
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'mentors')]
     private Collection $tags;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\ManyToOne(inversedBy: 'author')]
-    private ?Category $category = null;
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'mentors')]
+    private Collection $categories;
 
-    #[ORM\Column(length: 255)]
-    private ?string $mentorName = null;
+    #[ORM\OneToMany(mappedBy: 'mentor', targetEntity: Course::class)]
+    private Collection $courses;
 
-    #[ORM\ManyToOne(inversedBy: 'mentors')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $categories = null;
+    #[ORM\OneToMany(mappedBy: 'mentor', targetEntity: MentorSession::class)]
+    private Collection $sessions;
+
+    #[ORM\OneToOne(mappedBy: 'mentor', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->courses = new ArrayCollection();
+        $this->sessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,39 +155,110 @@ class Mentor
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): static
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    public function getMentorName(): ?string
-    {
-        return $this->mentorName;
-    }
-
-    public function setMentorName(string $mentorName): static
-    {
-        $this->mentorName = $mentorName;
-
-        return $this;
-    }
-
-    public function getCategories(): ?Category
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
     {
         return $this->categories;
     }
 
-    public function setCategories(?Category $categories): static
+    public function addCategory(Category $category): static
     {
-        $this->categories = $categories;
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
 
         return $this;
     }
+
+    public function removeCategory(Category $category): static
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Course>
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): static
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses->add($course);
+            $course->setMentor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): static
+    {
+        if ($this->courses->removeElement($course)) {
+            // set the owning side to null (unless already changed)
+            if ($course->getMentor() === $this) {
+                $course->setMentor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MentorSession>
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(MentorSession $session): static
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions->add($session);
+            $session->setMentor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(MentorSession $session): static
+    {
+        if ($this->sessions->removeElement($session)) {
+            // set the owning side to null (unless already changed)
+            if ($session->getMentor() === $this) {
+                $session->setMentor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setMentor(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getMentor() !== $this) {
+            $user->setMentor($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
+    }
+
 }

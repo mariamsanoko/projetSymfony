@@ -26,6 +26,9 @@ class Pay
     #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: '0')]
     private ?string $amount = null;
 
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    private ?Course $course = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Pay
     public function setAmount(string $amount): static
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getCourse(): ?Course
+    {
+        return $this->course;
+    }
+
+    public function setCourse(?Course $course): static
+    {
+        $this->course = $course;
 
         return $this;
     }

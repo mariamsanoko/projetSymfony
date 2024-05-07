@@ -5,14 +5,6 @@
 {% block body %}
 
 <div class="container">
-    <section class="hero">
-       
-            <h1 class="display-5">Mentor Profil </h1>
-             {% if app.user %}
-               <p> Bonjour {{ app.user.fullname}} !
-                {% endif %}
-        
-        </section>
         <section class="bg-light">
             <div class="container">
                 <div class="row">
@@ -24,8 +16,8 @@
                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
                                     </div>
                                     <div class="col-lg-6 px-xl-10">
-                                        <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                            <h3 class="h2 text-white mb-0">{{ app.user.fullname}}</h3>
+                                        <div class="d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                            <h3 class="h2   mb-0">{{ mentor.user.fullName }}</h3>
                                             <span class="text-primary">Coach</span>
                                         </div>
                                         <ul class="list-unstyled mb-1-9">

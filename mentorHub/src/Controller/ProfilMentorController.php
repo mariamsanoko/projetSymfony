@@ -2,17 +2,32 @@
 
 namespace App\Controller;
 
+use App\Entity\Mentor;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilMentorController extends AbstractController
 {
-    #[Route('/profil/mentor', name: 'app_profil_mentor')]
-    public function index(): Response
+    #[Route('/profil/mentor/{id}', name: 'app_profil_mentor')]
+    public function index(Mentor $mentor): Response
     {
         return $this->render('profil/mentor/profil_mentor.html.twig', [
-            'controller_name' => 'ProfilMentorController',
+            'mentor' => $mentor,
+        ]);
+    }
+
+
+    #[Route('/profil/mes-sessions', name: 'app_profil_mentor_sessions')]
+    public function sessions(): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        # Session suivie par l'utilisateur : dd($user->getMentorSessions()->toArray());
+        return $this->render('profil/mentor/profil_mentor_sessions.html.twig', [
+            'trainingSessions' => $user->getMentor()->getSessions(),
         ]);
     }
 }
