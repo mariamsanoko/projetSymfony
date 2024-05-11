@@ -63,26 +63,14 @@ class DefaultController extends AbstractController
 
     }
     
-    #[Route('/page/contact.html')]
-    // Ex. http://127.0.0.1:8000/page/contact.html
+    #[Route('/default/contact.html')]
+
     public function contact()
     {
-        return new Response('
-            <h1>Contactez-nous</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolorem itaque repudiandae. At consequuntur debitis expedita fuga fugit harum mollitia numquam odio quia quis? Dignissimos ducimus eius id nemo quibusdam.</p>
-        ');
-    }
+        return $this->render('default/contact.html.twig', [
+            'contact' => $contact
 
-    //#[Route('/search/{specialite}')]
-    // {slug} représente un paramètre de la route.
-    public function searchSpecialite($specialite)
-    {
-        # TODO Rechercher dans ma BDD tous les mentors qui font cette spécialité.
-        # TODO Retourner le résultat dans ma vue, pour affichage...
-
-        return new Response("
-            <h1>Vous recherchez un spécialiste : $specialite</h1>
-        ");
+        ]);
     }
 
 }
