@@ -46,6 +46,15 @@ class Mentor
     #[ORM\OneToOne(mappedBy: 'mentor', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $skills = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $position = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $experience = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -257,6 +266,42 @@ class Mentor
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSkills(): ?string
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(string $skills): static
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
+    public function getPosition(): ?string
+    {
+        return $this->position;
+    }
+
+    public function setPosition(string $position): static
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(string $experience): static
+    {
+        $this->experience = $experience;
 
         return $this;
     }

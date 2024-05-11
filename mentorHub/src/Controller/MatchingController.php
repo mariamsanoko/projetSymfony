@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class MatchingController extends AbstractController
 {
     #[Route('/matching', name: 'app_matching')]
-    public function matchUsers(): Response
+    public function matchedUsers(): Response
     {
         //logique de matching pour trouver les utlisateurs compatibles
         
         return $this->render('matching/matching.html.twig', [
-            'controller_name' => 'MatchingController',
+            'matchedUsers' => 'MatchingController',
         ]);
     }
 }

@@ -5,11 +5,12 @@
 
 {% block body %}
 
+{% include'components/_header.html.twig' %}
 
     <div class="container mt-5">
         <div class="row">
-            <h1 class="display-6">Bienvenue sur MentorHub</h1>
-            <p>Découvrez notre plateforme de mentorat de carrière </p>
+            <h1 class="hero">Bienvenue sur MentorHub</h1>
+            <p class="hero">Découvrez notre plateforme de mentorat de carrière </p>
             <div class="col">
             {% if app.user %}
                 Bonjour {{ app.user.fullname }} !
@@ -21,8 +22,8 @@
 
     <div class="container mt-5">
     <div class="row">
-        <h2 class="display-6 mt-3 mb-3">Qui sommes-nous ?</h2>
-        <p>MentorHub est une plateforme dédiée à la mise en relation entre mentors expérimentés et personnes cherchant à
+        <h2 class="hero">Qui sommes-nous ?</h2>
+        <p class="hero">MentorHub est une plateforme dédiée à la mise en relation entre mentors expérimentés et personnes cherchant à
             bénéficier de leur expertise et de leurs conseils dans divers domaines.
             Que vous soyez à la recherche d'un mentor pour vous guider dans votre carrière, vos études, ou tout
             simplement pour acquérir de nouvelles compétences, MentorHub est là pour vous aider à trouver le mentor
@@ -33,7 +34,7 @@
 
     <div class="container mt-5">
         <div class="row">
-            <h2 class="display-6 mt-3 mb-3">Nos mentors</h2>
+            <h2 class="hero">Nos mentors</h2>
             {% for mentor in mentors %}
                 <div class="col">
                     <div class="card">
