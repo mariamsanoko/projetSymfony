@@ -46,16 +46,39 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     
 public function findCompatibleUsers(User $user): array
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $user)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-       ;
-    }
+{
+    // Récupérer les informations du User actuel
+    $currentUserSkills = $user->getSkills();
+    $currentUserPosition = $user->getPosition();
+    $currentUserExperience = $user->getExperience();
+
+    // Récupérer le repository EntityManager pour accéder aux autres utilisateurs
+    $em = $this->getEntityManager();
+
+    // Construire la requête pour trouver les utilisateurs compatibles
+    $qb = $em->createQueryBuilder();
+    $qb->select('u')
+       ->from('App\Entity\User', 'u')
+       ->where($qb->expr()->not('u.id = :currentUserId'))
+       ->setParameter('currentUserId', $user->getId());
+
+    // Filtrer par compétences similaires
+    $qb->andWhere($qb->expr()->in('u.skills', $currentUserSkills));
+
+    // Filtrer par titre de poste similaire
+    $qb->andWhere($qb->expr()->eq('u.position', ':currentUserPosition'))
+       ->setParameter('currentUserPosition', $currentUserPosition);
+
+    // Filtrer par expérience similaire (vous pouvez ajuster la logique selon vos besoins)
+    $qb->andWhere($qb->expr()->between('u.experience', $currentUserExperience - 2, $currentUserExperience + 2));
+
+    // Exécuter la requête
+    $query = $qb->getQuery();
+    $compatibleUsers = $query->getResult();
+
+    return $compatibleUsers;
+}
+
 
 //    public function findOneBySomeField($value): ?User
 //    {

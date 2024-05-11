@@ -8,11 +8,13 @@
 
     <div class="container mt-5">
         <div class="row">
-            <h1 class="display-5">Bienvenue sur MentorHub</h1>
-            <p>Découvrez notre plateforme de mentorat de carrière</p>
+            <h1 class="display-6">Bienvenue sur MentorHub</h1>
+            <p>Découvrez notre plateforme de mentorat de carrière </p>
+            <div class="col">
             {% if app.user %}
                 Bonjour {{ app.user.fullname }} !
             {% endif %}
+         </div>
         </div>
     </div>
 
@@ -59,4 +61,5 @@
 
         </div>
     </div>
+    {% include'components/_carrousel.html.twig' %}
 {% endblock %}
