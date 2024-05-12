@@ -38,6 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Mentor $mentor = null;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Pay $relation = null;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
@@ -183,6 +186,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMentor(?Mentor $mentor): static
     {
         $this->mentor = $mentor;
+
+        return $this;
+    }
+
+    public function getRelation(): ?Pay
+    {
+        return $this->relation;
+    }
+
+    public function setRelation(?Pay $relation): static
+    {
+        $this->relation = $relation;
 
         return $this;
     }
