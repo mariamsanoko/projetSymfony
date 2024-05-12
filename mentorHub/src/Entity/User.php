@@ -41,10 +41,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Pay $relation = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Pay::class)]
+    private Collection $Pay;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
         $this->mentorSessions = new ArrayCollection();
+        $this->Pay = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,6 +202,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRelation(?Pay $relation): static
     {
         $this->relation = $relation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pay>
+     */
+    public function getPay(): Collection
+    {
+        return $this->Pay;
+    }
+
+    public function addPay(Pay $pay): static
+    {
+        if (!$this->Pay->contains($pay)) {
+            $this->Pay->add($pay);
+            $pay->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePay(Pay $pay): static
+    {
+        if ($this->Pay->removeElement($pay)) {
+            // set the owning side to null (unless already changed)
+            if ($pay->getUser() === $this) {
+                $pay->setUser(null);
+            }
+        }
 
         return $this;
     }

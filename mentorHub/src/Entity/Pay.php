@@ -34,6 +34,9 @@ class Pay
     #[ORM\OneToMany(mappedBy: 'relation', targetEntity: User::class)]
     private Collection $users;
 
+    #[ORM\ManyToOne(inversedBy: 'Pay')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -130,6 +133,18 @@ class Pay
                 $user->setRelation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
