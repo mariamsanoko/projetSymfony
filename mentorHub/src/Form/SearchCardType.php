@@ -19,7 +19,7 @@ class SearchCardType extends AbstractType
                 'class' => Course::class,
                 'required' => false,
                 'choice_label' => 'title',
-                'label' => 'Vous êtes plutôt ?*',
+                'label' => 'Vous recherchez un mentorat ?',
                 'placeholder' => '-- Choisissez un sujet de mentoring --',
             ])
             ->add('category', EntityType::class, [
