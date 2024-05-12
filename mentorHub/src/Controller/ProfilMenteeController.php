@@ -26,8 +26,6 @@ class ProfilMenteeController extends AbstractController
         $user = $this->getUser();
 
         # Session suivie par l'utilisateur : dd($user->getMentorSessions()->toArray());
-        return $this->render('profil/mentee/profil_mentee_sessions.html.twig', [
-            'trainingSessions' => $user->getMentee()->getSessions(),
-        ]);
+        return $this->render('profil/mentee/profil_mentee_sessions.html.twig');
     }
 }

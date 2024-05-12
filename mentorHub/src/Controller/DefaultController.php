@@ -63,14 +63,11 @@ class DefaultController extends AbstractController
 
     }
     
-    #[Route('/default/contact.html')]
+    #[Route('/contact.html')]
 
     public function contact()
     {
-        return $this->render('default/contact.html.twig', [
-            'contact' => $contact
-
-        ]);
+        return $this->render('contact/contact.html.twig');
     }
 
 }
