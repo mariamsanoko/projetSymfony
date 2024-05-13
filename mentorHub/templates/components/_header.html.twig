@@ -9,21 +9,43 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Accueil</a></li>
-          <li><a href="about.html">À Propos</a></li>
-          <li><a href="courses.html">Cours</a></li>
-          <li><a href="trainers.html">Mentors</a></li>
-          <li><a href="events.html">Master Class</a></li>
-          <li><a href="pricing.html">Prix</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ path('app_default_home') }}" class="active">Accueil</a></li>
+          <li><a href="#">À Propos</a></li>
+          <li><a href="#">Cours</a></li>
+          <li><a href="#">Mentors</a></li>
+          <li><a href="{{ path('search_mentor') }}">Rechercher un mentor</a></li> 
+          <li><a href="{{ path('app_default_contact') }}">Devenir Mentor</a></li>
+          <li><a class="nav-link" href="{{ path('app_default_contact') }}">Contactez-nous</a></li>
+
+
+          {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_MENTOR') %}
+                    <li>
+                        <a class="nav-link" href="{{ path('app_profil_mentor_sessions') }}">Mes sessions</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_user_register') }}">Inscription</a>
+                </li>
+            {% endif %}
           
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      <a class="btn-getstarted" href="#">Connexion</a>
-      <a class="btn-getstarted" href="#">Inscription</a>
-      <a class="btn-getstarted" href="#>Profil</a>
-      <a class="btn-getstarted" href="#">Rechercher un mentor</a>
+   
+      <a class="btn-getstarted" href="#">Get started</a>
 
     </div>
   </header>
