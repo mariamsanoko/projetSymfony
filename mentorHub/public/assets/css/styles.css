@@ -15,41 +15,16 @@ body {
     background-color: #f4f4f4;
 }
 
-li, a, button {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 16 px;
-    color: #edf0f1;
-    text-decoration: none;
+.carousel-caption {
+     margin-top: 0px;
+
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
 
-.logo {
-    cursor: pointer;
-}
 
-.nav_links {
-    list-style: none;
-}
-
-.nav_links li {
-    display:inline-block;
-    padding: 0px 20px;
-}
 
 /* Styles pour la section héro */
-.hero {
-    text-align: center;
-    padding: 50px 0;
-    background-color: #007bff;
-    color: #fff;
-}
+
 
 .hero h1 {
     font-size: 36px;
