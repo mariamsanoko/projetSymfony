@@ -6,10 +6,13 @@
       <img src="{{ asset('assets/frontend/img/hero-bg.jpg') }}" alt="" data-aos="fade-in">
 
       <div class="container">
-        <h2 data-aos="fade-up" data-aos-delay="100" class="">Learning Today,<br>Leading Tomorrow</h2>
-        <p data-aos="fade-up" data-aos-delay="200">We are team of talented designers making websites with Bootstrap</p>
+        <h2 data-aos="fade-up" data-aos-delay="100" class=""> 
+          {% if app.user %}
+          Bonjour {{ app.user.fullname }} !</h2>
+      {% endif %}<h3>Bienvenue sur Mentor Hub</h3>
+        <p data-aos="fade-up" data-aos-delay="200">Vous-êtes connectez en tant que Mentor !</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="courses.html" class="btn-get-started">Get Started</a>
+          <a href="courses.html" class="btn-get-started">Accéder à mon profil</a>
         </div>
       </div>
 
@@ -27,7 +30,7 @@
           </div>
 
           <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
-            <h3>Voluptatem dignissimos provident quasi corporis</h3>
+            <h3>Mentor Hub dignissimos provident quasi corporis</h3>
             <p class="fst-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.

@@ -10,8 +10,8 @@
 {% include'components/_main.html.twig' %}
     <div class="container mt-5">
         <div class="row">
-            <h1 class="hero">Bienvenue sur MentorHub</h1>
-            <p class="hero">Découvrez notre plateforme de mentorat de carrière </p>
+            <h1>Bienvenue sur MentorHub</h1>
+            <p>Découvrez notre plateforme de mentorat de carrière </p>
             <div class="col">
             {% if app.user %}
                 Bonjour {{ app.user.fullname }} !
@@ -24,7 +24,7 @@
 
     <div class="container mt-5">
         <div class="row">
-            <h2 class="hero">Nos mentors</h2>
+            <h2>Nos mentors</h2>
             {% for mentor in mentors %}
                 <div class="col">
                     <div class="card">
