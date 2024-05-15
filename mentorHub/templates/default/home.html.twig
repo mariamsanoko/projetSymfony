@@ -8,13 +8,11 @@
 
 
 {% include'components/_main.html.twig' %}
-
     <div class="container mt-5">
         <div class="row">
+            <h1 class="hero">Bienvenue sur MentorHub</h1>
+            <p class="hero">Découvrez notre plateforme de mentorat de carrière </p>
             <div class="col">
-            <h1>Bienvenue sur MentorHub</h1>
-            <p>Découvrez notre plateforme de mentorat de carrière </p>
-
             {% if app.user %}
                 Bonjour {{ app.user.fullname }} !
             {% endif %}
@@ -26,7 +24,7 @@
 
     <div class="container mt-5">
         <div class="row">
-            <h2>Nos mentors</h2>
+            <h2 class="hero">Nos mentors</h2>
             {% for mentor in mentors %}
                 <div class="col">
                     <div class="card">
@@ -56,6 +54,72 @@
     </div>
 
    
-    
+    <div class="container mt-5">
+        <h2 class="display-6">Témoignages de nos utilisateurs</h2>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Grâce à MentorHub, j'ai pu trouver un mentor exceptionnel qui m'a beaucoup aidé dans mon développement professionnel. Je recommande vivement cette plateforme à tous ceux qui cherchent à progresser dans leur carrière."</p>
+                            <p class="text-end"><em>- Alice, Développeuse Web</em></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres témoignages sous forme de div.carousel-item au besoin -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Grâce à MentorHub, j'ai pu trouver un mentor exceptionnel qui m'a beaucoup aidé dans mon développement professionnel. Je recommande vivement cette plateforme à tous ceux qui cherchent à progresser dans leur carrière."</p>
+                            <p class="text-end"><em>- Alice, Développeuse Web</em></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres témoignages sous forme de div.carousel-item au besoin -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Grâce à MentorHub, j'ai pu trouver un mentor exceptionnel qui m'a beaucoup aidé dans mon développement professionnel. Je recommande vivement cette plateforme à tous ceux qui cherchent à progresser dans leur carrière."</p>
+                            <p class="text-end"><em>- Alice, Développeuse Web</em></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres témoignages sous forme de div.carousel-item au besoin -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
 
+</div>
 {% endblock %}
