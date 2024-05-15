@@ -26,12 +26,12 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/{id}')]
+    #[Route('/category/{slug}')]
     public function category($id, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->find($id);
         return $this->render('default/category.html.twig', [
-            'category' => $category,
+            'slug' => $slug,
         ]);
     }
 
