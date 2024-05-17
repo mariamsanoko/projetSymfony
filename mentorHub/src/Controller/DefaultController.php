@@ -45,7 +45,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/categories/{slug}')]
-    public function categories($slug): Response
+    public function categories($slug) : Response
     {
         return $this->render('default/categories.html.twig', [
             'slug' => $slug

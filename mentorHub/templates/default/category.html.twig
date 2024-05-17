@@ -1,32 +1,13 @@
 {% extends "base.html.twig" %}
 
 
-{% block title %}Catégorie : {{ category.name}}{% endblock %}
+{% block title %}Catégorie : {% endblock %}
 
 {% block body %}
 
-{% include'components/_carrousel.html.twig' %}
     <div class="container">
-        <div class="row">     
-            <h1  class="display-4 mt-5 mb-3">{{ category.name}}</h1>
-        
-        {% for mentors in category.mentors %}
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">{{ mentors.mentorName }}</h3>
-                    <img src="{{ mentors.image }}" alt="" class="img-fluid">
-                    <h4 class="card-title">{{ mentors.slug }}</h4>
-                     <p class="card-title">{{ mentors.bio }}</p>
-                </div>
-            </div>
-        </div>
-
-    {% else %}
-        <div class="alert alert-info">
-            Pas de mentor pour le moment.
-        </div>
-    {% endfor %}
+        <h1> {{ slugc}} </h1>
+    </div>
 
    
 {% endblock %}
