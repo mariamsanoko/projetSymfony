@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %} Recherche de Mentors !{% endblock %}
+{% block title %} Rechercher de Mentors !{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -31,6 +31,38 @@
                 <h1>Recherche avancée</h1>
                 
                 {{ form(search_mentor) }}
+
+                <div class="container mt-5">
+                    <div class="row">
+                        <h2>Nos mentors</h2>
+                        {% for mentor in mentors %}
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3>{{ mentor.user.fullName }}</h3>
+                                        <img src="{{ mentor.image }}" alt="" class="img-fluid">
+                                        <h4 class="card-title">{{ mentor.slug }}</h4>
+                                        <p class="card-title">{{ mentor.bio }}</p>
+                                      
+                                        <div class="card-body ">
+                                            <a class="btn btn-primary" href="{{ path('app_profil_mentor', {'id': mentor.id}) }}"
+                                               class="card-link">Voir le profil</a>
+                                            <a class="btn btn-secondary" href="{{ path('app_profil_mentor_sessions', {'id': mentor.id}) }}" class="card-link">Mentorat Session</a>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+            
+                        {% else %}
+                            <div class="alert alert-info">
+                                Pas de Mentor pour le moment.
+                            </div>
+                        {% endfor %}
+            
+                    </div>
+                </div>
+            
                    
             </div>
         </div>

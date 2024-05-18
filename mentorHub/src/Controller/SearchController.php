@@ -19,20 +19,26 @@ class SearchController extends AbstractController
 
         if ($searchMentorForm->isSubmitted() && $searchMentorForm->isValid()) {
             $data = $searchMentorForm->getData();
+           //dd($data);
 
             /** @var Course $course */
             $course = $data['course'];
+            
             if (null !== $course) {
+                
                 return $this->redirectToRoute('app_profil_mentor',
                     ['id' => $course->getMentor()->getId()]);
+                
             }
 
             /** @var Category $category */
             $category = $data['category'];
+
             if (null !== $category) {
                 $mentors = $category->getMentors();
             }
 
+            
         }
 
         return $this->render('search/mentor.html.twig', [
