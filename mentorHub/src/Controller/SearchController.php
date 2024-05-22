@@ -10,40 +10,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
-    #[Route('/search/mentor/', name: 'search_mentor')]
-    public function searchMentor(Request $request, MentorRepository $mentorRepository)
-
+    #[Route('/profil/mentor/{id}', name: 'app_profil_mentor')]
+    public function index(Mentor $mentor): Response
     {
-        $searchMentorForm = $this->createForm(SearchCardType::class)
-            ->handleRequest($request);
+        return $this->render('profil/mentor/profil_mentor.html.twig', [
+            'mentor' => $mentor,
+        ]);
+    }
 
-        if ($searchMentorForm->isSubmitted() && $searchMentorForm->isValid()) {
-            $data = $searchMentorForm->getData();
-           //dd($data);
+    #[Route('/profil/mes-sessions', name: 'app_profil_mentor_sessions')]
+    public function sessions(): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
 
-            /** @var Course $course */
-            $course = $data['course'];
-            
-            if (null !== $course) {
-                
-                return $this->redirectToRoute('app_profil_mentor',
-                    ['id' => $course->getMentor()->getId()]);
-                
-            }
+        // Récupérer les sessions de mentorat de l'utilisateur
+        $sessions = $user->getMentor()->getSessions();
 
-            /** @var Category $category */
-            $category = $data['category'];
-
-            if (null !== $category) {
-                $mentors = $category->getMentors();
-            }
-
-            
-        }
-
-        return $this->render('search/mentor.html.twig', [
-            'search_mentor' => $searchMentorForm->createView(),
-            'mentors' => $mentors ?? null,
+        return $this->render('profil/mentor/profil_mentor_sessions.html.twig', [
+            'trainingSessions' => $sessions,
         ]);
     }
 }
