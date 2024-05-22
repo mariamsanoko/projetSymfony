@@ -3,60 +3,190 @@
 {% block title %}Profil Mentor !{% endblock %}
 
 {% block body %}
+<div class="container">
+  <div class "col-6"> 1</div>
+    
+    <div class "col-6"2</div>
 
+ 
 
-<!-- Pricing Section -->
-
-<section id="pricing" class="pricing section">
-
-  <div class="container">
-
-    <div class="row gy-3">
-
-     
-      <div class="col-xl-8 col-lg-8" data-aos="fade-up" data-aos-delay="200">
-        <div class="img-fluid">
-        
-          <div class="col-lg-8 mb-4 mb-lg-0">
-            <img src="{{ mentor.image }}" alt="...">
-        </div>
-       
-        </div>
-      </div><!-- End Pricing Item -->
-
-      
-
-      <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="400">
-        <div class="pricing-item">
-          <span class="advanced">Top Mentor</span>
-          <h3>{{ mentor.slug }}</h3>
-          <h5>{{ mentor.user.fullName }}</h5>
-           <h4>{{ mentor.price }}<sup>€</sup><span> / mois</span></h4>
-       
-           <ul>
-            <li>{{ mentor.bio }}</li>
-            <li>{{ mentor.yearexpertise }} ans</li>
-            <li>Compétences : </li>
-            <li>Formations : </li>
-            <li>Massa ultricies mi</li>
-          </ul>
-          <div class="btn-wrap">
-            <a href="#" class="btn-buy">Réserver maintenant</a>
-          </div>
-        </div>
-      </div><!-- End Pricing Item -->
+</div>
 
 <div class="container">
-        <section class="bg-light mt-5">
+        <section class="bg-light">
             <div class="container">
                 <div class="row">
-                    
+                    <div class="col-lg-12 mb-4 mb-sm-5">
+                        <div class="card card-style1 border-0">
+                            <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 mb-4 mb-lg-0">
+                                        <img src="{{ mentor.image }}" alt="...">
+                                    </div>
+                                    <div class="col-lg-6 px-xl-10">
+                                        <div class="d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                            <h3 class="h2   mb-2">{{ mentor.user.fullName }}</h3>
+                                            <p class="text-primary">{{ mentor.slug }}</p>
+                                        </div>
+
+
+                                        
+                                        <ul class="list-unstyled mb-1-9">
+                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Expérience:</span> 10 Years</li>
+                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Prix:</span> {{ mentor.price }} €</li>
+                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Website:</span> www.example.com</li>
+                                            <li class="display-28">
+                                                <span class="btn primary font-weight-600">Réserver une session</span> 
+                                                <span class="btn primary font-weight-600">Programme de Mentorat</span></li>
+                                        </ul>
+                                        <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
+                                            <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
+                                            <li><a href="#!"><i class="ti-linkedin"></i></a></li>
+                                            <li><a href="#!"><i class="ti-pinterest"></i></a></li>
+                                            <li><a href="#!"><i class="ti-instagram"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-4 mb-sm-5">
+                        <div>
+                            <span class="section-title text-primary mb-3 mb-sm-4">Biographie</span>
+                            <p>{{ mentor.bio }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12 mb-4 mb-sm-5">
+                                <div class="mb-4 mb-sm-5">
+                                    <span class="section-title text-primary mb-3 mb-sm-4">Compétences</span>
+                                    <div class="progress-text">
+                                        <div class="row">
+                                            <div class="col-6">Driving range</div>
+                                            <div class="col-6 text-end">80%</div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                                        <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                                    </div>
+                                    <div class="progress-text">
+                                        <div class="row">
+                                            <div class="col-6">Short Game</div>
+                                            <div class="col-6 text-end">90%</div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                                        <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                                    </div>
+                                    <div class="progress-text">
+                                        <div class="row">
+                                            <div class="col-6">Side Bets</div>
+                                            <div class="col-6 text-end">50%</div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                                        <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                                    </div>
+                                    <div class="progress-text">
+                                        <div class="row">
+                                            <div class="col-6">Putting</div>
+                                            <div class="col-6 text-end">60%</div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-progress progress progress-medium" style="height: 4px;">
+                                        <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="section-title text-primary mb-3 mb-sm-4">Formations</span>
+                                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                                    <p class="mb-1-9">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+                      
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
        
-    
+        <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <div class="container">
+
+        <div class="row gy-3">
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>Free</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li class="na">Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="pricing-item featured">
+              <h3>Business</h3>
+              <h4><sup>$</sup>19<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="pricing-item">
+              <h3>Developer</h3>
+              <h4><sup>$</sup>29<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li>Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="pricing-item">
+              <span class="advanced">Advanced</span>
+              <h3>Ultimate</h3>
+              <h4><sup>$</sup>49<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li>Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
         </div>
 
       </div>
