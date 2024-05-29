@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/category/{slug}')]
+    #[Route('/categorie/{slug}')]
     public function category($id, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->find($id);
