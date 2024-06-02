@@ -28,7 +28,8 @@ class ProfilMentorController extends AbstractController
 
         # Session suivie par l'utilisateur : dd($user->getMentorSessions()->toArray());
         
-        dd($user->getMentorSessions()->toArray());
+        //dd($user->getMentorSessions()->toArray());
+        dd($user->getMentor());
         
         return $this->render('profil/mentor/profil_mentor_sessions.html.twig', [
             'TraningSession' => $user->getMentor()->getSessions(),
