@@ -48,7 +48,8 @@ class DefaultController extends AbstractController
     public function categories($slug) : Response
     {
         return $this->render('default/categories.html.twig', [
-            'slug' => $slug
+            'slug' => $slug,
+            'fullname' => 'mentor name'
         ]);
     }
 
