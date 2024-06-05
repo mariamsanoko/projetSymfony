@@ -55,18 +55,18 @@ class DefaultController extends AbstractController
 
 
 //exaple route skill 
-    #[Route('/search/{skill}')]
-    public function searchSkill($skill) 
+  //  #[Route('/search/{skill}')]
+   // public function searchSkill($skill) 
 
-    {   
+  //  {   
         # TODO Search All the mentor in database as the same skill
         
         # TODO return the result in view of for display 
 
-        return new Response ("
-        <h1>Vous recherchez un mentor : $skill</h1>
-        ");
-    }
+      //  return new Response ("
+    //    <h1>Vous recherchez un mentor : $skill</h1>
+   //     ");
+  //  }
 
 
 

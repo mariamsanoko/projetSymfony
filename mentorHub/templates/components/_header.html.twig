@@ -16,7 +16,6 @@
           
           <li><a href="{{ path('app_master_class') }}">Master Class</a></li> 
 
-          <li><a class="nav-link" href="{{ path('app_default_contact') }}">Contact</a></li>
 
 
           {% if app.user %}
@@ -46,7 +45,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
    
-      <a class="btn-getstarted" href="#">Get started</a>
+      <a class="btn-getstarted" href="{{ path('app_default_contact') }}">Contact</a>
 
     </div>
   </header>
